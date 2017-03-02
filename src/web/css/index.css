@@ -1,0 +1,53 @@
+/* app style */
+
+@font-face {
+  font-family: 'Bench Nine';
+  src: url('../fonts/BenchNine-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  font-family: 'Bench Nine', sans-serif;
+  font-size: 18px;
+  background-color: rgb(20, 220, 220);
+}
+
+#page,
+.menuArea {
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 10px;
+  margin: 5px;
+}
+
+.menuArea {
+  text-align: right;
+  box-shadow: 2px 2px 2px -2px rgba(12, 12, 30, 0.75) inset;
+}
+
+.menuArea .pill {
+  display: inline-block;
+  margin: 5px 12px;
+  text-shadow: 5px 6px 4px rgba(12, 12, 30, 0.75);
+  font-size: 20px;
+  cursor: pointer;
+  text-transform: uppercase;
+}
+
+.menuArea .pill:hover {
+  text-shadow: 5px 6px 4px rgba(12, 12, 30, 0.35);
+  /*color: goldenrod;*/
+  color: darkorange;
+}
+
+#mast {
+  background-image: url('../images/nebulae-crop-2.jpg');
+}
+
+#mast h1 {
+  font-size: 72px;
+  font-weight: bold;
+  margin: 10px;
+  margin-top: 0;
+}

@@ -5,19 +5,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=1920, height=1080, initial-scale=1">
     <title>Nebulae</title>
-    <link rel="stylesheet" href="css/bootstrap-reboot.css" />
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
     <link rel="stylesheet" href="css/font-awesome.css" />
     <!--<link rel="stylesheet" href="css/theme.css" />-->
     <link rel="stylesheet" href="css/index.css" />
-    <script src="js/knockout-3.4.1.js"></script>
-    <script src="js/jquery.min.js"></script>
-    <!--<script src="js/jquery-ui.min.js"></script>-->
-    <script src="js/jquery.event.gevent.js"></script>
-    <script src="js/tether.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/mustache.min.js"></script>
-    <script src="js/ko.mustache.js"></script>
-    <script src="js/mustache-ko-binding.js"></script>
+    <script src="js/lib/knockout-3.4.1.js"></script>
+    <script src="js//lib/jquery.min.js"></script>
+    <!--<script src="js/lib/jquery-ui.min.js"></script>-->
+    <script src="js/lib/jquery.event.gevent.js"></script>
+    <script src="js/lib/tether.min.js"></script>
+    <script src="js/lib/bootstrap.min.js"></script>
+    <script src="js/lib/knockout.punches.min.js"></script>
 </head>
 
 <body id="body">
@@ -29,10 +27,10 @@
             <div id="header">
                 <div id="screenMenu" class="menuArea">
                     <div data-bind="foreach:Components">
-                        <span class="pill" data-bind="click:$parent.launch, text:$data"></span>
+                        <span class="pill" data-bind="click:$root.launch">{{$data}}</span>
                     </div>
                 </div>
-                <div id="titleBlock" data-bind="text:PageTitle">PageTitle</div>
+                <!--<div id="titleBlock">{{PageTitle}}</div>-->
             </div>
         </div>
         <div id="middleBlock" class="row">
@@ -46,6 +44,8 @@
             <div class="copyright">Copyright &copy; JPSCo. Ltd.</div>
         </div>
     </div>
+    <script src="js/nebulae.js"></script>
+    <script src="js/network_call.js"></script>
     <script src="js/zApp.js"></script>
     <script src="js/index.js"></script>
 </body>

@@ -1,0 +1,42 @@
+/** Model Style */
+
+.resultArea {
+  margin-top: 5px;
+  padding: 5px;
+  border: 1px solid #fff;
+  box-shadow: 2px 2px 2px -2px rgba(20, 20, 20, 0.5) inset;
+  border-radius: 5px;
+  background-color: rgba(18, 220, 220, 0.1);
+  font-family: 'Arial', 'sans-serif';
+}
+
+.resultArea table {
+  width: 100%;
+  /*margin: 5px;*/
+  background-color: #fff;
+  font-size: 12px;
+  padding: 5px;
+  border-spacing: 5px;
+  border-collapse: separate;
+}
+
+.resultArea td {
+  padding: 3px;
+  padding-left: 15px;
+  margin: 3px;
+  margin-bottom: 1px;
+  cursor: pointer;
+  border-spacing: 5px;
+  border-collapse: separate;
+  border: 1px dotted #fff;
+}
+
+.resultArea .selectedRow td {
+  background-color: darkorange;
+  border-radius: 6px;
+  padding-left: 14px;
+}
+
+.resultArea td:hover {
+  border: 1px dotted gray;
+}

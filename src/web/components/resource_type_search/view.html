@@ -1,0 +1,24 @@
+<div class="component container-fluid resourceTypeSearch">
+  <!--<div class="well">
+    <button class="btn-xs btn-sexy" data-bind="click:$parent.toggleEditor">
+          <em class="fa" data-bind="css:{'fa-plus':! $parent.isEditorVisible(), 'fa-check':$parent.isEditorVisible}, text:$parent.editorButtonContents"></em>
+        </button>
+  </div>-->
+  <div class="well well-sm">
+    <input type="text" id="searchResourceType" data-bind="value:searchTerm, event:{keypress:searchBoxKeyPress}" /> &nbsp;
+    <button class="btn-xs btn-default" data-bind="click:doSearch"><em class="fa fa-search"></em> search</button>
+  </div>
+  <div class="resultArea" data-bind="visible:showResults">
+    <h3 class="heading">Search Results</h3>
+    <table class="table searchResult">
+      <thead></thead>
+      <tbody data-bind="foreach:resultList">
+        <tr data-bind="css:{'selectedRow': $parent.pickedResourceType() && ($parent.pickedResourceType()._id == $data._id)}">
+          <td data-bind="text:name,click:$parent.rowSelected"></td>
+        </tr>
+      </tbody>
+      <tfoot></tfoot>
+    </table>
+  </div>
+</div>
+</div>

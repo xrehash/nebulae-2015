@@ -47,7 +47,7 @@ var zApp = (function () {
         pNode.removeChild(node[0])
       }
     }
-    self.launch = function (comp) {
+    self.launch = function (comp, args) {
 
       var view = 'components/' + comp + '/view.html';
       var style = 'components/' + comp + '/style.css';
@@ -55,6 +55,7 @@ var zApp = (function () {
       var viewText = '';
       var composeOk = false;
       var popName = comp;
+      self.launchArgs = args;
       var req = $.get(view);
       // console.log('launching ', comp, req)
       req.done(function (data) {
@@ -74,7 +75,7 @@ var zApp = (function () {
           $(prop).append('<div class="compHeader"><button data-bind="click:compCloseClick" class="close"><em class="fa fa-close"></em> close</button><span class="compcaption">{{Caption}}</span></div>');
           $(prop).append(viewText);
           // console.log("zz")
-          $(prop).append("<script>(function(){" + scriptText + "if(Model){var model = new Model(App);model.propName='" + propName + "';model.compCloseClick=App.compCloseClick;var comp = document.getElementById('" + propName + "');ko.applyBindings(model,comp);}})();</script>");
+          $(prop).append("<script>(function(){" + scriptText + "if(Model){var model = new Model(App,App.launchArgs);model.propName='" + propName + "';model.compCloseClick=App.compCloseClick;var comp = document.getElementById('" + propName + "');ko.applyBindings(model,comp);}})();</script>");
           var styleReq = $.get(style);
           styleReq.done(function (styleCopy) {
             $(prop).append("<style scoped>" + styleCopy + "</style>");

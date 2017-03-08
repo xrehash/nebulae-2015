@@ -91,3 +91,9 @@ body {
   min-width: 50%;
   max-width: 80%;
 }
+
+button.btn {
+  font-size: 11px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  cursor: pointer;
+}

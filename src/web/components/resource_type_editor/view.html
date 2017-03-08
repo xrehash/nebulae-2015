@@ -1,0 +1,26 @@
+<!--Resource Type Editor-->
+
+<div class="component container-fluid resourceTypeSearch">
+  <div>Mode {{mode}} | ID {{ResourceType()._id}}</div>
+  <div data-bind="template:{data:ResourceType, name:'read-mode'}">
+  </div>
+</div>
+
+<script type="text/html" id='read-mode'>
+  <div>Type <span class="field">{{name}}</span> | ID <span class="field">{{_id}}</span> | Parent <span class="field">{{parent}}</span></div>
+  <h5 class="h5">Schema</h5>
+  <table class="schema table">
+    <tr>
+      <th class="heading">Property Name</th>
+      <!-- ko foreach: schema -->
+      <td>{{Object.getOwnPropertyNames($data)[0]}}</td>
+      <!-- /ko -->
+    </tr>
+    <tr>
+      <th>Type</th>
+      <!-- ko foreach: schema -->
+      <td>{{$data[Object.getOwnPropertyNames($data)[0]]}}</td>
+      <!-- /ko -->
+    </tr>
+  </table>
+</script>

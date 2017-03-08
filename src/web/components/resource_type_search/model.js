@@ -5,6 +5,9 @@ var Model = (function () {
     self.Caption = "Resource Types";
     self.searchTerm = ko.observable("");
     self.pickedResourceType = ko.observable();
+    self.hasPicked = ko.computed(function () {
+      return self.pickedResourceType() ? true : false
+    })
     self.resultList = ko.observableArray();
     self.showResults = ko.computed(function () {
       return self.resultList() && self.resultList().length;
@@ -29,10 +32,16 @@ var Model = (function () {
       };
     };
     self.rowSelected = function (argObj, arg) {
-      console.log(argObj, arg);
+      //console.log(argObj, arg);
       self.pickedResourceType(argObj);
-      $.gevent.publish('spa-model-search-change', [argObj]);
+      $.gevent.publish('spa-model-search-SelectionChange', [argObj]);
     };
+    self.openPicked = function () {
+      if (self.pickedResourceType()) {
+        self.rTModel.launch('resource_type_editor', [self.pickedResourceType()]);
+      }
+    }
+
 
 
   }

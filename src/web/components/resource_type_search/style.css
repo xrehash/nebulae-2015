@@ -40,3 +40,8 @@
 .resultArea td:hover {
   border: 1px dotted gray;
 }
+
+.resultArea .heading {
+  font-size: 14px;
+  font-weight: bold;
+}

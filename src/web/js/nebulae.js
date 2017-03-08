@@ -2,6 +2,12 @@
 
 var nebulae;
 (function (nebulae) {
+  nebulae.newId = function () {
+    var dt = new Date();
+    var num = Math.floor(Math.random() * 100 * Date.now());
+    return "" + dt.getFullYear() + dt.getMonth() + dt.getDay() + dt.getHours() + dt.getMinutes() + "_" + num;
+  };
+
   var ResourceType = (function () {
     function ResourceType(id) {
       var self = this;

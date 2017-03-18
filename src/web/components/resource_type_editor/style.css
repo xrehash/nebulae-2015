@@ -1,6 +1,65 @@
-span.field {
-  font-weight: bold;
-  display: inline-block;
-  padding: 4px;
-  margin: 4px 10px;
-}
+ .type-heading label {
+   display: inline-block;
+   width: 50px;
+ }
+ 
+ .field {
+   border-radius: 8px;
+   border: 2px solid #333;
+   font-weight: bold;
+   font-size: 9px;
+   font-family: Arial, Helvetica, sans-serif;
+   display: inline-block;
+   min-width: 300px;
+   padding: 1px 2px;
+   margin: 4px 10px;
+ }
+ 
+ span.field {
+   background-color: rgba(15, 20, 200, 0.2);
+ }
+ 
+ input.field {
+   /*border: none;
+   border-radius: 0;
+   border-bottom: 2px solid #333;*/
+   font-family: Consolas, 'Courier New', Courier, monospace;
+   font-size: 18px;
+   font-weight: normal;
+   background-color: rgba(255, 255, 255, 1);
+ }
+ 
+ .button-bar {
+   /*background-color: rgba(230, 230, 220, 0.6);*/
+   padding: 6px;
+   border-bottom: 4px solid rgba(30, 30, 20, 0.6);
+ }
+ 
+ .button-bar button.btn {
+   border: 1px solid rgb(10, 10, 10);
+   box-shadow: 2px 2px 2px 1px #333;
+   padding: 4px;
+   display: inline-block;
+   margin: 3px;
+ }
+ 
+ .edit-btn {
+   background-color: rgba(250, 50, 110, 1);
+ }
+ 
+ .save-btn {
+   background-color: rgba(20, 250, 110, 1);
+ }
+ 
+ .remove {
+   color: red;
+ }
+ 
+ .add {
+   color: green;
+ }
+ 
+ .table.editor.schema button {
+   border-radius: 50%;
+   cursor: pointer;
+ }

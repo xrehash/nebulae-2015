@@ -8,6 +8,7 @@
     <input type="text" id="searchResourceType" data-bind="value:searchTerm, event:{keypress:searchBoxKeyPress}" /> &nbsp;
     <button class="btn btn-default" data-bind="click:doSearch"><em class="fa fa-search"></em> search</button>
     <button class="btn" data-bind="visible:hasPicked, click:openPicked"><em class="fa fa-folder-open"></em> Open Type</button>
+    <button class="btn" data-bind="click:newType"><em class="fa fa-user-plus"></em> New Type</button>
   </div>
   <div class="resultArea" data-bind="visible:showResults">
     <h3 class="heading">Search Results</h3>

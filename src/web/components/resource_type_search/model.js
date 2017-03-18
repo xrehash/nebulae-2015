@@ -41,8 +41,17 @@ var Model = (function () {
         self.rTModel.launch('resource_type_editor', [self.pickedResourceType()]);
       }
     }
+    self.newType = function () {
 
+      self.rTModel.launch('resource_type_editor', []);
 
+    }
+    self.dirtyDataResourceType = function () {
+      self.pickedResourceType(undefined)
+      self.resultList.removeAll()
+    }
+
+    $.gevent.subscribe($(document), 'spa-data-change-ResourceType', self.dirtyDataResourceType);
 
   }
   return SearchModel;

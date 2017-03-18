@@ -1,26 +1,77 @@
 <!--Resource Type Editor-->
 
 <div class="component container-fluid resourceTypeSearch">
-  <div>Mode {{mode}} | ID {{ResourceType()._id}}</div>
-  <div data-bind="template:{data:ResourceType, name:'read-mode'}">
+  <div class="button-bar">
+    <button class="btn edit-btn" data-bind="click:editBtnClick, visible:(mode()=='read-mode')"><em class="fa fa-edit"></em>Edit</button>
+    <button class="btn save-btn" data-bind="click:saveBtnClick, visible:(mode()=='edit-mode')"><em class="fa fa-disk"></em>Save</button>
+    <button class="btn cancel-btn" data-bind="click:editBtnClick, visible:(mode()=='edit-mode')"><em class="fa fa-edit"></em>Cancel</button>
+  </div>
+  <div data-bind="template:{data:dataSource, name:mode}">
   </div>
 </div>
 
+<script type="text/html" id='edit-mode'>
+  <div class="type-heading">
+    <br />
+    <label>Name</label> <input class="field" data-bind="value:name" /> <br />
+    <label>ID</label> <span class="field" data-bind="text:_id"></span><br />
+    <label>Family</label>
+    <select class="field" data-bind="optionsValue:'_id', optionsCaption:'mix in...',value:family, optionsText:'name', valueAllowUnset:true, options:ListResourceTypes()"></select>
+  </div>
+  <p class="caption">Schema</p>
+  <table class="schema editor table">
+    <thead>
+      <tr>
+        <th>Property Name</th>
+        <th>Type</th>
+        <th><button class="add"><em class="fa fa-plus"></em></button></th>
+      </tr>
+    </thead>
+    <tbody data-bind="foreach: schema">
+      <tr>
+        <td data-bind="text:Object.getOwnPropertyNames($data)[0]"></td>
+        <td data-bind="text:$data[Object.getOwnPropertyNames($data)[0]]"></td>
+        <td><button class="remove" data-bind="click: $root.removeSchemaItem"><em class="fa fa-trash-o"></em></button></td>
+      </tr>
+    </tbody>
+  </table>
+</script>
+
 <script type="text/html" id='read-mode'>
-  <div>Type <span class="field">{{name}}</span> | ID <span class="field">{{_id}}</span> | Parent <span class="field">{{parent}}</span></div>
-  <h5 class="h5">Schema</h5>
-  <table class="schema table">
-    <tr>
-      <th class="heading">Property Name</th>
+  <div class="type-heading">
+
+    <label>Type </label> <span class="field">{{name}}</span> <br />
+    <label>ID</label> <span class="field" data-bind="text:_id"></span><br />
+    <label>Parent</label>
+    <span class="field">{{familyName()}}</span></div>
+  <p class="caption">Schema</p>
+  <table class="schema table table-compact">
+    <tbody data-bind="if: (schema && (schema.length < 6))">
+      <tr>
+        <th class="heading">Property Name</th>
+        <!-- ko foreach: schema -->
+        <td data-bind="text:Object.getOwnPropertyNames($data)[0]"></td>
+        <!-- /ko -->
+      </tr>
+      <tr>
+        <th>Type</th>
+        <!-- ko foreach: schema -->
+        <td>{{$data[Object.getOwnPropertyNames($data)[0]]}}</td>
+        <!-- /ko -->
+      </tr>
+    </tbody>
+    <tbody data-bind="ifnot: (!schema && schema.length < 6)">
+      <tr>
+        <th>Property Name</th>
+        <th>Type</th>
+      </tr>
       <!-- ko foreach: schema -->
-      <td>{{Object.getOwnPropertyNames($data)[0]}}</td>
+      <tr>
+        <td>{{Object.getOwnPropertyNames($data)[0]}}</td>
+        <td>{{$data[Object.getOwnPropertyNames($data)[0]]}}</td>
+      </tr>
       <!-- /ko -->
-    </tr>
-    <tr>
-      <th>Type</th>
-      <!-- ko foreach: schema -->
-      <td>{{$data[Object.getOwnPropertyNames($data)[0]]}}</td>
-      <!-- /ko -->
-    </tr>
+    </tbody>
+
   </table>
 </script>

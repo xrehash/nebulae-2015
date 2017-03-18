@@ -12,12 +12,18 @@ var nebulae;
     function ResourceType(id) {
       var self = this;
       self._id = id;
+      self.family = undefined;
+      self.name = "";
+      self.schema = [];
 
       self.inflate = function (dao) {
         self._id = dao['_id'];
         self.name = dao['name'];
-        self.parent = dao['parent'];
-        self.schema = dao['schema'];
+        self.family = dao['family'];
+        if (dao['schema'])
+          self.schema = dao['schema'];
+        if (dao['_rev'])
+          self._rev = dao['_rev'];
       }
       self.deflate = function () {
         return JSON.stringify(self)
@@ -34,7 +40,7 @@ var nebulae;
       self.name = name
       self.resourceTypeId = resourceType._id
       if (resourceType && resourceType.schema && resourceType.schema.length) {
-        resourceType.schema.map(function (v, i, Arr) {
+        resourceType.schema.map(function (v) {
           self[Object.getOwnPropertyNames(v)[0]] = null
         })
       }

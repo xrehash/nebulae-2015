@@ -90,9 +90,13 @@ var zApp = (function () {
         });
     };
 
+    self.dirtyDataResourceType = function () {
+      self.loadResourceTypeList();
+    }
     self.loadResourceTypeList = function () {
       networkCall.GetResourceTypes(function (listData) {
           self.listResourceTypes(listData);
+          $.gevent.publish('spa-data-change-ResourceType')
         },
         function (error) {
           console.log(error);
@@ -101,6 +105,9 @@ var zApp = (function () {
     };
 
     self.start = function () {
+      // register handlers
+      $.gevent.subscribe($(document), 'spa-data-save-ResourceType', self.dirtyDataResourceType);
+
       console.log('starting app');
       self.loadResourceTypeList();
       ko.applyBindings(self, document.getElementById('body'));

@@ -18,13 +18,14 @@
     <label>Family</label>
     <select class="field" data-bind="optionsValue:'_id', optionsCaption:'mix in...',value:family, optionsText:'name', valueAllowUnset:true, options:ListResourceTypes()"></select>
   </div>
-  <p class="caption">Schema</p>
-  <table class="schema editor table">
+  <p class="caption">Schema </p>
+  <div data-bind="visible:$root.newProperty">Name <input type="text" data-bind="value:$root.newPropertyName" /> Type <select data-bind="options:$root.newPropertyTypes,value:$root.newPropertyType"></select>    <button data-bind="click:$root.addSchemaItem"><em class="fa fa-check"/></button></div>
+  <table class="schema editor">
     <thead>
       <tr>
         <th>Property Name</th>
         <th>Type</th>
-        <th><button class="add"><em class="fa fa-plus"></em></button></th>
+        <th>&nbsp;<button data-bind="click:$root.newPropertyClick" class="add round-button"><em class="fa fa-plus"></em></button></th>
       </tr>
     </thead>
     <tbody data-bind="foreach: schema">
@@ -45,7 +46,7 @@
     <label>Parent</label>
     <span class="field">{{familyName()}}</span></div>
   <p class="caption">Schema</p>
-  <table class="schema table table-compact">
+  <table class="schema">
     <tbody data-bind="if: (schema && (schema.length < 6))">
       <tr>
         <th class="heading">Property Name</th>
@@ -60,7 +61,7 @@
         <!-- /ko -->
       </tr>
     </tbody>
-    <tbody data-bind="ifnot: (!schema && schema.length < 6)">
+    <tbody data-bind="if: (schema && schema.length >= 6)">
       <tr>
         <th>Property Name</th>
         <th>Type</th>

@@ -2,7 +2,7 @@
    display: inline-block;
    width: 50px;
  }
- 
+
  .field {
    border-radius: 8px;
    border: 2px solid #333;
@@ -14,11 +14,11 @@
    padding: 1px 2px;
    margin: 4px 10px;
  }
- 
+
  span.field {
    background-color: rgba(15, 20, 200, 0.2);
  }
- 
+
  input.field {
    /*border: none;
    border-radius: 0;
@@ -28,13 +28,13 @@
    font-weight: normal;
    background-color: rgba(255, 255, 255, 1);
  }
- 
+
  .button-bar {
    /*background-color: rgba(230, 230, 220, 0.6);*/
    padding: 6px;
    border-bottom: 4px solid rgba(30, 30, 20, 0.6);
  }
- 
+
  .button-bar button.btn {
    border: 1px solid rgb(10, 10, 10);
    box-shadow: 2px 2px 2px 1px #333;
@@ -42,24 +42,55 @@
    display: inline-block;
    margin: 3px;
  }
- 
+
  .edit-btn {
    background-color: rgba(250, 50, 110, 1);
  }
- 
+
  .save-btn {
    background-color: rgba(20, 250, 110, 1);
  }
- 
+
  .remove {
    color: red;
  }
- 
+
  .add {
-   color: green;
+   color: #fff;
+   background-color: green;
  }
- 
- .table.editor.schema button {
+
+ table.schema {
+   width: 100%;
+ }
+
+ table.schema td {
+   padding: 2px;
+ }
+
+ table.schema button {
+   border-radius: 50%;
+   border: 1px solid #333;
+   /*background-color: rgba(250, 250, 8, 0.5);*/
+   cursor: pointer;
+ }
+
+ table.schema button:hover {
+   color: #000;
+   border-color: rgba(250, 50, 110, 1);
+   background-color: #fff;
+   box-shadow: 2px 1px 1px 1px rgba(250, 50, 110, 1) inset;
+ }
+
+ .round-button {
+   color: #fff;
+   border: 0px solid #000;
    border-radius: 50%;
    cursor: pointer;
+   box-shadow: 2px 2px 2px 1px #333;
+ }
+
+ .round-button:hover {
+   color: rgba(250, 50, 110, 1);
+   box-shadow: 2px 2px 2px 1px rgba(250, 50, 110, 1);
  }

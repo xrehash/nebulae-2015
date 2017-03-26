@@ -21,13 +21,33 @@ var Model = (function () {
       workee.inflate(JSON.parse(self.ResourceType().deflate()));
       workee.ListResourceTypes = self.ListResourceTypes()
       workee = ko.mapping.fromJS(workee);
+      self.newProperty = ko.observable(false);
+      self.newPropertyName = ko.observable();
+      self.newPropertyTypes = ["string", "number", "date"];
+      self.newPropertyType = ko.observable();
+      self.newPropertyClick = function () {
+        self.newProperty(true);
+      }
+      workee.family.subscribe(function (newParentId) {
+        console.log(newParentId)
+        var newParent = self.resTypeFind(newParentId)
+        if (newParent && Array.isArray(newParent.schema)) {
+          newParent.schema.forEach((x) => {
+            if (!workee.schema().find(function (e) {
+                return Object.getOwnPropertyNames(e)[0] == Object.getOwnPropertyNames(x)[0]
+              })) {
+              workee.schema.push(x)
+            }
+          })
+        }
+      })
       self.WorkingCopy(workee)
-      console.log(self.WorkingCopy())
+      //console.log(self.WorkingCopy())
     }
     self.saveBtnClick = function (obj, domObj) {
       var data = ko.mapping.toJS(self.WorkingCopy())
       delete data.ListResourceTypes
-      console.log(data)
+      //console.log(data)
       var p = networkCall.SaveResourceType(data);
       p.then(function (result) {
         result = JSON.parse(result)
@@ -45,6 +65,14 @@ var Model = (function () {
         return Object.getOwnPropertyNames(val)[0] == Object.getOwnPropertyNames(obj)[0];
       });
     };
+    self.addSchemaItem = function (obj, domObj) {
+      console.log(self.newPropertyName(), self.newPropertyType())
+      if (self.newPropertyName() && self.newPropertyType()) {
+        var p = {}
+        p[self.newPropertyName()] = self.newPropertyType();
+        self.WorkingCopy().schema.push(p)
+      }
+    }
     self.ListResourceTypes = function () {
       return self.App.listResourceTypes;
     };
@@ -67,12 +95,13 @@ var Model = (function () {
       var rt = args[0]
       self.setupRT(rt)
     } else {
-      self.ResourceType(new nebulae.ResourceType(nebulae.newId()))
+      self.setupRT(new nebulae.ResourceType(nebulae.newId()))
+
       self.mode("edit-mode")
       self.updateWorkingCopy();
     }
     self.dirtyDataResourceType = function (evt, arg) {
-      console.log("I am dirty", self.ResourceType())
+      //console.log("I am dirty", self.ResourceType())
       var x = self.resTypeFind(self.ResourceType()._id)
       if (x)
         self.setupRT(x)

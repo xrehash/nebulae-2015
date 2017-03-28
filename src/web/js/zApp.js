@@ -5,7 +5,7 @@ var zApp = (function () {
     var self = this;
 
     self.PageTitle = ko.observable("");
-    self.Components = ko.observableArray(['relations', 'resources', 'resource_type_search']);
+    self.Components = ko.observableArray(['relations', 'resource_search', 'resource_type_search']);
     self.listResourceTypes = ko.observableArray();
 
     self.present = function (comp) {

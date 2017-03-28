@@ -1,0 +1,53 @@
+<!-- view for resource search -->
+<div class="component container-fluid resourceSearch">
+  <div class="tabSearch" data-bind="with:tabCompModel">
+    <div class="row tabBar">
+      <div id="tab1" class="tabHandle" data-bind="click:tabClick,css:{'activeTab':('tab1' == activeTab())}">
+        Type
+      </div>
+      <div id="tab2" class="tabHandle" data-bind="click:tabClick,css:{'activeTab':('tab2' == activeTab())}">
+        Name
+      </div>
+      <!--<div id="tab3" class="tabHandle" data-bind="click:tabClick,css:{'activeTab':('tab3' == activeTab())}">
+        Relationship
+      </div>-->
+    </div>
+    <div class="row tabBody">
+      <div class="tabContent col-sm-10" data-bind="visible:(activeTab() == 'tab1')">
+        <select data-bind="options:$root.App.listResourceTypes,optionsValue:'_id', optionsCaption:'pick...',value:family, optionsText:'name', valueAllowUnset:true"></select>
+      </div>
+      <div class="tabContent col-sm-10" data-bind="visible:(activeTab() == 'tab2')">
+        <input type="text" data-bind="textInput:nameSearch" />
+      </div>
+      <!--<div class="tabContent col-sm-10" data-bind="visible:(activeTab() == 'tab3')">
+        <select size="3" data-bind=""></select>
+      </div>-->
+      <button class="btn col-sm-2" data-bind="visible:isSearchEnabled, click:doSearch">Search</button>
+    </div>
+  </div>
+  <div class="row">
+    <table class="results col-xs-12 table table-striped table-hover table-sm">
+      <thead class="thead-default" data-bind="with:resourceType">
+        <tr class="caption">
+          <th data-bind="attr:{colspan:(2+schema.length)}">Search Results For <span data-bind="text:name"></span></th>
+        </tr>
+        <tr>
+          <th>Name</th>
+          <!-- ko foreach:schema -->
+          <th data-bind="text:Object.getOwnPropertyNames($data)[0]"></th>
+          <!-- /ko -->
+          <th>ID</th>
+        </tr>
+      </thead>
+      <tbody data-bind="foreach:resultResources">
+        <tr>
+          <td data-bind="text:name"></td>
+          <!-- ko foreach:{data:$root.resourceType().schema, as:'pName'} -->
+          <td data-bind="text:$parent[Object.getOwnPropertyNames(pName)[0]]"></td>
+          <!-- /ko -->
+          <td data-bind="text:_id"></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

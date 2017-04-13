@@ -34,10 +34,25 @@ var zApp = (function () {
       };
     };
     self.compCloseClick = function (dObj, node) {
-      if (confirm("Are you sure you want to remove this component?")) {
-        console.log(dObj, node);
-        self.clean(dObj.propName);
-      }
+      swal({
+          title: "Are you sure?",
+          text: "You will are about to remove this component!",
+          type: "warning",
+          showCancelButton: true,
+          animation: "slide-from-top",
+          confirmButtonColor: "#DD6B55",
+          confirmButtonText: "Yes, delete it!",
+          cancelButtonText: "No, cancel plx!",
+          closeOnConfirm: true,
+          closeOnCancel: true
+
+        },
+        function (isConfirm) {
+          if (isConfirm) {
+            // console.log(dObj, node);
+            self.clean(dObj.propName);
+          }
+        });
     };
     self.clean = function (comp) {
       var node = $("#" + comp);
@@ -103,6 +118,13 @@ var zApp = (function () {
         }
       );
     };
+
+    self.getResourceTypeById = function (id) {
+      return self.listResourceTypes().find(function (val) {
+        //console.log(val, id)
+        return val._id === id
+      })
+    }
 
     self.start = function () {
       // register handlers

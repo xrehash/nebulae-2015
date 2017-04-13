@@ -44,7 +44,7 @@ var config = {
       req.onload = function () {
         // This is called even on 404 etc
         // so check the status
-        console.log(req);
+        //console.log(req);
         if (req.status >= 200 && req.status < 300) {
           // Resolve the promise with the response text
           resolve(req.response);
@@ -78,7 +78,7 @@ var config = {
             obj.inflate(v.doc)
             return obj;
           });
-          console.log(listData);
+          console.log("Resource Types Loaded ", listData.length);
           ok(listData);
         },
         function (error) {

@@ -15,6 +15,7 @@
     <div class="row tabBody">
       <div class="tabContent col-sm-10" data-bind="visible:(activeTab() == 'tab1')">
         <select data-bind="options:$root.App.listResourceTypes,optionsValue:'_id', optionsCaption:'pick...',value:family, optionsText:'name', valueAllowUnset:true"></select>
+        <button class="btn" data-bind="visible:isSearchEnabled,click:doCreate">Create</button>
       </div>
       <div class="tabContent col-sm-10" data-bind="visible:(activeTab() == 'tab2')">
         <input type="text" data-bind="textInput:nameSearch" />
@@ -26,7 +27,7 @@
     </div>
   </div>
   <div class="row">
-    <table class="results col-xs-12 table table-striped table-hover table-sm">
+    <table class="results col-xs-12 table table-striped table-sm">
       <thead class="thead-default" data-bind="with:resourceType">
         <tr class="caption">
           <th data-bind="attr:{colspan:(2+schema.length)}">Search Results For <span data-bind="text:name"></span></th>

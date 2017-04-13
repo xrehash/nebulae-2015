@@ -1,0 +1,21 @@
+<div class="component container-fluid resourceEditor">
+  <div><span data-bind="text:currentMode"></span> <span data-bind="text:familyName()"></span> resource (<span data-bind="text:resourceObject._id"></span>)</div>
+  <div data-bind="template:{data:dataSource, name:currentMode}">
+  </div>
+
+  <script type="text/html" id='edit'>
+    <label>Name</label> <input data-bind="value:name" />
+    <h3>Properties</h3>
+    <ul data-bind="foreach: {data:ResourceType().schema, as:'sElement'}">
+      <li><span class="label" data-bind="text:Object.getOwnPropertyNames(sElement)"></span> <input data-bind="attr:{type:sElement[Object.getOwnPropertyNames(sElement)]}"
+        /></li>
+    </ul>
+  </script>
+
+  <script type="text/html" id='read'>
+    <div class="type-heading"></div>
+    <ul data-bind="foreach: {data:$root.resourceObject, as:'sElement'}">
+      <li><span class="label" data-bind="text:Object.getOwnPropertyNames(sElement)"></span></li>
+    </ul>
+  </script>
+</div>

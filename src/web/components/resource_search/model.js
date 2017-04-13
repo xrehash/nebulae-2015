@@ -18,7 +18,12 @@ var Model = (function () {
       $.gevent.publish('spa-data-search-request', [{
         family: me.family(),
         name: me.nameSearch()
-      }]);
+      }])
+    }
+    me.doCreate = function (obj, domObj) {
+      $.gevent.publish('spa-data-create-request', [{
+        family: me.family()
+      }])
     }
   }
 
@@ -46,8 +51,15 @@ var Model = (function () {
         }, console.log)
       }
     }
+    self.createLaunch = function (evt, objs) {
+      objs.mode = "read"
+      objs.target = new nebulae.Resource(nebulae.newId(), "", self.App.getResourceTypeById(objs.family))
+      // console.log(objs, self.App.getResourceTypeById(objs.family))
+      self.App.launch('resource-editor', objs)
+    }
 
     $.gevent.subscribe($(document), 'spa-data-search-request', self.searchSend);
+    $.gevent.subscribe($(document), 'spa-data-create-request', self.createLaunch);
   }
 
 

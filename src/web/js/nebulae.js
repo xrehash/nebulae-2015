@@ -36,6 +36,7 @@ var nebulae;
   var Resource = (function () {
     function Resource(id, name, resourceType) {
       var self = this;
+      var _resourceType = resourceType
       self._id = id
       self.name = name
       self.resourceTypeId = resourceType._id
@@ -45,8 +46,8 @@ var nebulae;
         })
       }
 
-      self.resourceType = function () {
-        return resourceType
+      self.ResourceType = function () {
+        return _resourceType
       }
 
       self.deflate = function () {
@@ -63,6 +64,7 @@ var nebulae;
         })
       }
     }
+    return Resource
   }())
   nebulae.Resource = Resource;
 

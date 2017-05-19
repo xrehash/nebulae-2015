@@ -13,23 +13,26 @@
       </div>-->
     </div>
     <div class="row tabBody">
-      <div class="tabContent col-sm-10" data-bind="visible:(activeTab() == 'tab1')">
+      <div class="tabContent" data-bind="visible:(activeTab() == 'tab1')">
         <select data-bind="options:$root.App.listResourceTypes,optionsValue:'_id', optionsCaption:'pick...',value:family, optionsText:'name', valueAllowUnset:true"></select>
-        <button class="btn" data-bind="visible:isSearchEnabled,click:doCreate">Create</button>
+        <button class="btn" data-bind="visible:isSearchEnabled,click:doCreate"><em class="fa fa-edit"></em>Create</button>
       </div>
-      <div class="tabContent col-sm-10" data-bind="visible:(activeTab() == 'tab2')">
+      <div class="tabContent" data-bind="visible:(activeTab() == 'tab2')">
         <input type="text" data-bind="textInput:nameSearch" />
       </div>
       <!--<div class="tabContent col-sm-10" data-bind="visible:(activeTab() == 'tab3')">
         <select size="3" data-bind=""></select>
       </div>-->
-      <button class="btn col-sm-2" data-bind="visible:isSearchEnabled, click:doSearch">Search</button>
+      <div class="">
+        <button class="btn" data-bind="visible:isSearchEnabled, click:doSearch"><em class="fa fa-search"></em> Search</button>        &nbsp;
+        <button class="btn" data-bind="visible:$root.selectedResource(), click:doLoad"><em class="fa fa-folder-open-o"></em> Load</button>
+      </div>
     </div>
   </div>
   <div class="row">
     <table class="results col-xs-12 table table-striped table-sm">
       <thead class="thead-default" data-bind="with:resourceType">
-        <tr class="caption">
+        <tr class="">
           <th data-bind="attr:{colspan:(2+schema.length)}">Search Results For <span data-bind="text:name"></span></th>
         </tr>
         <tr>
@@ -41,7 +44,7 @@
         </tr>
       </thead>
       <tbody data-bind="foreach:resultResources">
-        <tr>
+        <tr data-bind="click:$root.resourceSelectionSpy, css:{'selectedRow':$root.selectedResource() == $data}">
           <td data-bind="text:name"></td>
           <!-- ko foreach:{data:$root.resourceType().schema, as:'pName'} -->
           <td data-bind="text:$parent[Object.getOwnPropertyNames(pName)[0]]"></td>

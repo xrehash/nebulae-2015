@@ -1,5 +1,17 @@
 <div class="component container-fluid resourceEditor">
-  <div><span data-bind="text:currentMode"></span> <span data-bind="text:familyName()"></span> resource (<span data-bind="text:resourceObject._id"></span>)</div>
+  <div class="type-heading">
+    <div class="h2">
+      <span class="meta" data-bind="text:familyName()"></span>&nbsp;
+      <span data-bind="text:resourceObject.name"></span>
+      <span class="tiny" data-bind="text:resourceObject._id"></span>
+    </div>
+    <div class="">
+      <button data-bind="click:editAction" class="btn"><em class="fa fa-pencil"></em>&nbsp; edit</button>
+      <button data-bind="visible:currentMode() == 'edit', click:saveAction" class="btn"><em class="fa fa-window-close"></em>&nbsp; cancel</button>
+      <button data-bind="visible:currentMode() == 'edit'" class="btn"><em class="fa fa-save"></em>&nbsp; save</button>
+    </div>
+  </div>
+  <!--<span class="modeFlag" data-bind="text:currentMode"></span>-->
   <div data-bind="template:{data:dataSource, name:currentMode}">
   </div>
 
@@ -13,9 +25,20 @@
   </script>
 
   <script type="text/html" id='read'>
-    <div class="type-heading"></div>
-    <ul data-bind="foreach: {data:$root.resourceObject, as:'sElement'}">
-      <li><span class="label" data-bind="text:Object.getOwnPropertyNames(sElement)"></span></li>
-    </ul>
+    <hr />
+    <table class="table table-bordered table-compact table-striped">
+      <thead>
+        <tr>
+          <th>Property</th>
+          <th>Value</th>
+        </tr>
+      </thead>
+      <tbody data-bind="foreach: {data:$root.resourcePropertyNames(), as:'sElement'}">
+        <tr>
+          <td class='meta' data-bind="text:sElement"></td>
+          <td data-bind="text:$root.resourceObject[sElement]"></td>
+        </tr>
+      </tbody>
+    </table>
   </script>
 </div>

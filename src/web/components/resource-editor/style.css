@@ -1,4 +1,26 @@
-.label {
+/*.label {
   display: inline-block;
   width: 3cm;
+}*/
+
+.modeFlag {
+  display: inline-block;
+  padding: 6px 8px;
+  background-color: rgb(20, 10, 25);
+  color: rgba(214, 205, 220);
+  border-radius: 6px;
+}
+
+span.meta {
+  color: rgb(180, 169, 182);
+}
+
+span.tiny {
+  font-size: 40%;
+}
+
+.type-heading {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
 }

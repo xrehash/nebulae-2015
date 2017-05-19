@@ -25,6 +25,9 @@ var Model = (function () {
         family: me.family()
       }])
     }
+    me.doLoad = function (obj, domObj) {
+      $.gevent.publish('spa-data-load-request', [])
+    }
   }
 
   function SearchModel(App) {
@@ -35,6 +38,7 @@ var Model = (function () {
     self.resultIds = ko.observableArray()
     self.resultResources = ko.observableArray()
     self.resourceType = ko.observable()
+    self.selectedResource = ko.observable()
     self.searchSend = function (evt, objs) {
       console.log('fart', objs)
       if (objs && objs.family) {
@@ -57,9 +61,22 @@ var Model = (function () {
       // console.log(objs, self.App.getResourceTypeById(objs.family))
       self.App.launch('resource-editor', objs)
     }
+    self.doLoad = function (evt, objs) {
+      objs = objs || {
+        mode: "read"
+      }
+      var tgt = new nebulae.Resource(nebulae.newId(), "", self.App.getResourceTypeById(self.selectedResource().resourceTypeId))
+      tgt.inflate(self.selectedResource())
+      objs.target = tgt
+      self.App.launch('resource-editor', objs)
+    }
+    self.resourceSelectionSpy = function (obj, domObj) {
+      self.selectedResource(self.selectedResource() == obj ? undefined : obj)
+    }
 
     $.gevent.subscribe($(document), 'spa-data-search-request', self.searchSend);
     $.gevent.subscribe($(document), 'spa-data-create-request', self.createLaunch);
+    $.gevent.subscribe($(document), 'spa-data-load-request', self.doLoad);
   }
 
 

@@ -4,7 +4,7 @@ var Model = function (App) {
     var self = this;
     App.PageTitle("Home");
     self.Caption = "Welcome Component"
-    self.greeting = "Bye Bye Silly";
+    self.greeting = "Welcome to funny Shapes Land, where shapes are bent.";
     self.wee = function (evt) {
         Router.navigate("wee");
     };
